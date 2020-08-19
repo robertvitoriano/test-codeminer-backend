@@ -1,7 +1,7 @@
 const express = require('express');
 const Router = require('./routes/router.js');
 const PORT = 4000;
-
+require('./database/connection')
 const server = express();
 server.use(Router);
 server.get('/',(req,res)=>{
