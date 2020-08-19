@@ -5,8 +5,8 @@ const PORT = 4000;
 const server = express();
 server.use(Router);
 server.get('/',(req,res)=>{
-    res.send({message:'Hello World'});
+    res.send({message:'Hello '});
 })
 server.listen(PORT,()=>{
-    console.log('My app is up and ruuning ar port '+PORT);
-})
+    console.log('My app is up and ruuning at port '+PORT);
+})//
