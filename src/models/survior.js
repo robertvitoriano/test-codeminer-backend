@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const connection = require('./../database/connection');
 const Schema = mongoose.Schema;
 
 
