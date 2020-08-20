@@ -4,6 +4,7 @@ const PORT = 4000;
 require('./database/connection')
 const server = express();
 server.use(Router);
+
 server.get('/',(req,res)=>{
     res.send({message:'Hello '});
 })
