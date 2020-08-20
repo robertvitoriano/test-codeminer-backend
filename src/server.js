@@ -3,8 +3,9 @@ const Router = require('./routes/router.js');
 const PORT = 4000;
 require('./database/connection')
 const server = express();
+server.use(express.json);
 server.use(Router);
-
+server.use(express.json);
 server.get('/',(req,res)=>{
     res.send({message:'Hello '});
 })

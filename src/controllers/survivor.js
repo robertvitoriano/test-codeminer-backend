@@ -3,15 +3,14 @@ const SurvivorModel = require('./../models/survior');
 module.exports = {
 
     async registerSurvivor(req,res){
-        const survivor = new SurvivorModel(req.body);
-        console.log(survivor);
-        try{
-            await survivor.save();
-            res.send(survivor)
-            console.log(survivor)
-        }catch(e){
-            console.log(e);
-        }
+        // const survivor = new SurvivorModel({name:req.body.name,
+        //                                     age:req.body.age,                  
+        //                                     lastLocation:req.body.lastLocation,           
+        //                                     gender:req.body.gender
+
+        //                                    });
+        console.log(req.body);
+         
          
 
      },

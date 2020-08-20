@@ -3,8 +3,8 @@ const survivorController = require('./../controllers/survivor')
 
 
 survivorRouter.get('/:id');
-survivorRouter.post('/survivor',survivorController.registerSurvivor);
-survivorRouter.get('/survivor', survivorController.getAllSurvivors)
+survivorRouter.post('/survivors',survivorController.registerSurvivor);
+survivorRouter.get('/survivors', survivorController.getAllSurvivors)
 
 
 
