@@ -1,15 +1,26 @@
 const SurvivorModel = require('./../models/survior');
+const survivorRouter = require('../routes/survivor');
 
 module.exports = {
 
-    async registerSurvivor(req,res){
-        // const survivor = new SurvivorModel({name:req.body.name,
-        //                                     age:req.body.age,                  
-        //                                     lastLocation:req.body.lastLocation,           
-        //                                     gender:req.body.gender
+     registerSurvivor(req,res){
+        
+         const survivor = new SurvivorModel({name:req.body.name,
+                                             age:req.body.age,                  
+                                             lastLocation:req.body.lastLocation,           
+                                             gender:req.body.gender
 
-        //                                    });
-        console.log(req.body);
+                                 });
+        try {
+            console.log(req.body);
+            survivor.save()
+            res.status(204).send({message:'it works'})
+            
+        } catch (error) {
+            console.log(error)
+            
+        }
+ 
          
          
 
