@@ -1,18 +1,18 @@
 module.exports = {
     
-    getAveragetItemsPerUser(req,res){
+    getAveragetItemsPerUser(req, res){
 
     },
-    getAverageOfInfected(req,res){
+    getAverageOfInfected(req, res){
 
     },
-    getAverageOfInfected(req,res){
+    getAverageOfInfected(req, res){
 
     },
-    getAverageOfNonInfected(req,res){
+    getAverageOfNonInfected(req, res){
 
     },
-    getTotalPointsLost(req,res){
+    getTotalPointsLost(req, res){
 
     }
 }
