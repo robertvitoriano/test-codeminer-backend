@@ -20,15 +20,9 @@ module.exports = {
             console.log(error)
             
         }
- 
-         
-         
-
      },
 
     tradeItems(req,res){
-
-
     },
 
     reportInfection(req,res){
