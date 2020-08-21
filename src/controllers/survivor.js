@@ -6,14 +6,31 @@ module.exports = {
 
     try {
       if (await SurvivorModel.findOne({ name }))
-        //se encontrar um email o cadastro não será realizado
+
         return res.status(400).send({ error: "Name already in use" });
+
+        const lastLocationString = req.body.lastLocation;
+        const lastLocationArray = lastLocationString.split(',');
+        let newLocationNumberLongitude = parseInt(lastLocationArray[0]);
+        let newLocationNumberLatitude = parseInt(lastLocationArray[1]);
+
+        if (!lastLocationArray || !newLocationNumberLongitude|| !newLocationNumberLatitude) {
+            return res.send({ message: 'wrong format ! type "latitude,longitude' })
+        }
+
+        if (newLocationNumberLatitude > 90 || newLocationNumberLatitude < 0) {
+            newLocationNumberLatitude = 90
+        }
+        if (newLocationNumberLongitude > 180 || newLocationNumberLongitude < 0) {
+            newLocationNumberLongitude = 180
+        }
+       
 
       const user = await SurvivorModel.create({
         name,
         age,
         gender,
-        lastLocation,
+          lastLocation: `longitude: ${newLocationNumberLongitude}, latitude: ${newLocationNumberLatitude}`,
         ak,
         aid,
         soup,
@@ -21,7 +38,9 @@ module.exports = {
       });
 
       return res.send({ user });
-    } catch {}
+    } catch(e) {
+        console.log(e);
+    }
   },
 
   async tradeItems(req, res) {
@@ -231,8 +250,8 @@ module.exports = {
   },
 
   async reportInfection(req, res) {
-    const { user } = req.headers; //pega o usuario logado.
-    const { survivorId } = req.params; //pega o usuario selecionado e não logado.
+    const { user } = req.headers; 
+    const { survivorId } = req.params; 
 
     const loggedUser = await SurvivorModel.findById(user); 
     const survivor = await SurvivorModel.findById(survivorId); 
@@ -247,7 +266,7 @@ module.exports = {
 
     survivor.save();
 
-    return res.status(400).json(survivor); //retorna para o usuário logado.
+    return res.status(400).json(survivor); 
   },
 
   async getAllSurvivors(req, res) {
@@ -294,7 +313,6 @@ module.exports = {
     );
 
     res.send(survivor)
-
   },
 
   
