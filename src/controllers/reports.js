@@ -32,7 +32,6 @@ module.exports = {
             }
         })
 
-
        const average =(( infectedCounter / (totalUsers ))*100).toFixed(2);
 
         try{
@@ -65,8 +64,6 @@ module.exports = {
                 nonInfectedCounter++;
             }
         })
-
-
 
         const average = ((nonInfectedCounter / (totalUsers)) * 100).toFixed(2);
 
