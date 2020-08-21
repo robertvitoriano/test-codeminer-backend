@@ -2,7 +2,20 @@ const Survivor = require('./../models/survior');
 const Report = require('./../models/report');
 module.exports = {
     
-    gePercentagetItemsPerUser(req, res){
+   async gePercentagetItemsPerUser(req, res){
+        let akCounter;
+        let aidCounter;
+        let waterCounter;
+        let soupCounter;
+        const survivors = await Survivor.find()
+        let infectedCounter = 0;
+        let totalUsers = 0;
+
+        survivors.map((survivor) => {
+            if (survivor.infected) {
+                infectedCounter++;
+            }
+        })
 
 
     },
@@ -12,15 +25,14 @@ module.exports = {
         let infectedCounter = 0;
         let totalUsers=0;
         survivors.map((survivor)=>{
+            totalUsers++;
+
             if(survivor.infected){
                 infectedCounter++;
             }
         })
 
-       survivors.map(survivor => {
-               totalUsers++;
-           
-       })
+
        const average =(( infectedCounter / (totalUsers ))*100).toFixed(2);
 
         try{
@@ -47,16 +59,14 @@ module.exports = {
         let nonInfectedCounter = 0;
         let totalUsers = 0;
         survivors.map((survivor) => {
+            totalUsers++;
+
             if (!survivor.infected) {
                 nonInfectedCounter++;
             }
         })
 
-        survivors.map((survivor) => {
-          
-                totalUsers++;
-            
-        })
+
 
         const average = ((nonInfectedCounter / (totalUsers)) * 100).toFixed(2);
 
