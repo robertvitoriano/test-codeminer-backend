@@ -37,7 +37,6 @@ module.exports = {
               description: "average_of_each_item_per user",
               info: "ak: " + akAverage + ", " + "water: " + waterAverage + ", "+"soup: "+soupAverage+", "+"aid: "+aidAverage
             });
-            console.log(report);
 
             res.send(report);
         } catch (e) {
