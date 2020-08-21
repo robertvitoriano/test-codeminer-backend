@@ -142,12 +142,14 @@ module.exports = {
       
       if (quantityUserPickAk) {
         const quantitySurivivorPickAk = await (parseInt(Survivor.ak) -  parseInt(akQuantityToPick)); 
+
         await SurvivorModel.findByIdAndUpdate(
           req.params.survivorId,
           { ak: quantitySurivivorPickAk },
           { new: true }
         );
       }
+
       await SurvivorModel.findByIdAndUpdate(
         req.headers.user,
         { ak: quantityUserPickAk },
@@ -165,6 +167,7 @@ module.exports = {
           { new: true }
         );
       }
+      
       await SurvivorModel.findByIdAndUpdate(
         req.headers.user,
         { aid: quantityUserPickAid },
@@ -184,7 +187,7 @@ module.exports = {
         );
 
       }
-      
+
       await SurvivorModel.findByIdAndUpdate(
         req.headers.user,
         { soup: quantityUserPickSoup },
