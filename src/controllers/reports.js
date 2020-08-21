@@ -6,20 +6,42 @@ module.exports = {
 
     },
    async getAverageOfInfected(req, res){
+      
         const survivors = await Survivor.find()
         let infectedCounter = 0;
+        let totalUsers=0;
         survivors.map((survivor)=>{
             if(survivor.infected){
                 infectedCounter++;
             }
-            console.log(infected);
         })
 
+       survivors.map((survivor) => {
+           if (!survivor.infected) {
+               totalUsers++;
+           }
+       })
+       const average =(( infectedCounter / (totalUsers ))*100).toFixed(2);
+
+        try{
+
+            const report = await Report.create({
+                description: "average_quantity_of_infected",
+                info: average
+
+            })
+            console.log(report);
+
+            res.send(report);
+
+        }catch(e){
+            console.log(e)
+        }
+    
+ 
 
     },
-    getAverageOfInfected(req, res){
 
-    },
     getAverageOfNonInfected(req, res){
 
     },
