@@ -7,12 +7,12 @@ module.exports ={
 
         const loggedUser = await userModel.findById(survivorId);
 
-        const ak = loggedUser.ak;
-        const aid = loggedUser.aid;
-        const soup = loggedUser.soup;
-        const water = loggedUser.water;
+        const AK47 = loggedUser.ak;
+        const First_Aid_Pouch = loggedUser.aid;
+        const Campbell_Soup = loggedUser.soup;
+        const  Fiji_Water = loggedUser.water;
 
-        res.send({ak,aid,soup,water});
+        res.send({ AK47, First_Aid_Pouch, Campbell_Soup, Fiji_Water });
 
     }
 }

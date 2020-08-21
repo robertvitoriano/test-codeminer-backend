@@ -9,7 +9,7 @@ module.exports = {
         let soupCounter = 0;
         let nonInfectedCounter = 0;
         const survivors = await Survivor.find();
-
+      
       
         survivors.map((survivor) => {
             akCounter = akCounter + parseInt(survivor.ak)
@@ -31,11 +31,21 @@ module.exports = {
         const soupAverage = parseFloat(soupCounter).toFixed(2);
         const akAverage = parseFloat(akCounter).toFixed(2)
 
-
         try {
             const report = await Report.create({
               description: "average_of_each_item_per user",
-              info: "ak: " + akAverage + ", " + "water: " + waterAverage + ", "+"soup: "+soupAverage+", "+"aid: "+aidAverage
+              info:
+                "AK47: " +
+                akAverage +
+                ", " +
+                "Fiji Water: " +
+                waterAverage +
+                ", " +
+                "Campbell Soup: " +
+                soupAverage +
+                ", " +
+                "First Aid Pouch: " +
+                aidAverage,
             });
 
             res.send(report);

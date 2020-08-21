@@ -2,9 +2,10 @@ const request = require("supertest");
 const app = require('../src/app')
 
 test('should register a survivor', async()=>{
+let random = Math.floor(Math.random() * 256);
 
     await request(app).post("/survivors").send({
-      name: "Rob",
+      name: random,
       age: 22,
       gender: "M",
       lastLocation:'50.05,60.06',
