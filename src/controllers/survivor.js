@@ -231,14 +231,14 @@ module.exports = {
   },
 
   async reportInfection(req, res) {
-    const { user } = req.headers; 
-    const { survivorId } = req.params;
+    const { user } = req.headers; //pega o usuario logado.
+    const { survivorId } = req.params; //pega o usuario selecionado e não logado.
 
-    const user = await SurvivorModel.findById(user); 
+    const loggedUser = await SurvivorModel.findById(user); 
     const survivor = await SurvivorModel.findById(survivorId); 
 
-    if (!survivor.survivorsWhoFlaggedId.includes(user.name)) {
-      survivor.survivorsWhoFlaggedId.push(user.name);
+    if (!survivor.survivorsWhoFlaggedId.includes(loggedUser.name)) {
+      survivor.survivorsWhoFlaggedId.push(loggedUser.name);
       if (survivor.survivorsWhoFlaggedId.length === 5) {
         ///FUNCIONANDO
         survivor.infected = true;
@@ -271,11 +271,31 @@ module.exports = {
 
   async updateSurvivorLocation(req, res) {
     const id = req.params.survivorId;
-    const newLocation = req.body.location;
+    const newLocationString = req.body.location;
+    const newLocationArray = newLocationString.split(',');
+    let newLocationNumberLongitude = parseInt(newLocationArray[0]);
+    let newLocationNumberLatitude = parseInt(newLocationArray[1]);
+  //latitude até 90
+
+    if(!newLocationArray || !newLocationNumberLongitude){
+        return res.send({message:'wrong format ! type "latitude,longitude'})
+    }
+
+    if(newLocationNumberLatitude>90){
+        newLocationNumberLatitude = 90
+    }
+    if(newLocationNumberLongitude>180){
+        newLocationNumberLongitude = 180
+    }
     const survivor = await SurvivorModel.findByIdAndUpdate(
       req.params.survivorId,
-      { location: newLocation },
+        { lastLocation:`longitude: ${newLocationNumberLongitude}, latitude: ${newLocationNumberLatitude}`  },
       { new: true }
     );
+
+    res.send(survivor)
+
   },
+
+  
 };
