@@ -25,11 +25,11 @@ module.exports = {
   },
 
   async tradeItems(req, res) {
-
-  //*************************  //TODO  pick user by name*************************************
+    //*************************  //TODO  pick user by name*************************************
+    // FindOne
     const name = req.body;
 
-    const { user } = req.headers; 
+    const { user } = req.headers;
     const { survivorId } = req.params;
 
     const {
@@ -59,11 +59,12 @@ module.exports = {
       const User = await SurvivorModel.findById(user);
       const Survivor = await SurvivorModel.findById(survivorId);
 
-      const finalQuantityUserAk = await (parseInt(User.ak) - parseInt(akQuantityToPay));
+      const finalQuantityUserAk = await (parseInt(User.ak) -
+        parseInt(akQuantityToPay));
 
       if (finalQuantityUserAk) {
-          
-        const finalQuantitySurvivorAk = await (parseInt(Survivor.ak) + parseInt(akQuantityToPay));
+        const finalQuantitySurvivorAk = await (parseInt(Survivor.ak) +
+          parseInt(akQuantityToPay));
 
         await SurvivorModel.findByIdAndUpdate(
           req.params.survivorId,
@@ -78,11 +79,12 @@ module.exports = {
         { new: true }
       );
 
-      const finalQuantityUserAid = await (parseInt(User.aid) - parseInt(aidQuantityToPay));
+      const finalQuantityUserAid = await (parseInt(User.aid) -
+        parseInt(aidQuantityToPay));
 
       if (finalQuantityUserAid) {
-
-        const finalQuantitySurvivorAid = await (parseInt(Survivor.aid) + parseInt(aidQuantityToPay));
+        const finalQuantitySurvivorAid = await (parseInt(Survivor.aid) +
+          parseInt(aidQuantityToPay));
 
         await SurvivorModel.findByIdAndUpdate(
           req.params.survivorId,
@@ -97,12 +99,13 @@ module.exports = {
         { new: true }
       );
 
-      const finalQuantityUserSoup = await (parseInt(User.soup) - parseInt(soupQuantityToPay));
+      const finalQuantityUserSoup = await (parseInt(User.soup) -
+        parseInt(soupQuantityToPay));
 
       if (finalQuantityUserSoup) {
+        const finalQuantitySurvivorSoup = await (parseInt(Survivor.soup) +
+          parseInt(soupQuantityToPay));
 
-        const finalQuantitySurvivorSoup = await (parseInt(Survivor.soup) + parseInt(soupQuantityToPay));
-          
         await SurvivorModel.findByIdAndUpdate(
           req.params.survivorId,
           { soup: finalQuantitySurvivorSoup },
@@ -116,10 +119,12 @@ module.exports = {
         { new: true }
       );
 
-      const finalQuantityUserWater = await (parseInt(User.water) - parseInt(waterQuantityToPay));
+      const finalQuantityUserWater = await (parseInt(User.water) -
+        parseInt(waterQuantityToPay));
 
       if (finalQuantityUserWater) {
-        const finalQuantitySurvivorWater = parseInt(Survivor.water) + parseInt(waterQuantityToPay);
+        const finalQuantitySurvivorWater =
+          parseInt(Survivor.water) + parseInt(waterQuantityToPay);
 
         await SurvivorModel.findByIdAndUpdate(
           req.params.survivorId,
@@ -127,7 +132,7 @@ module.exports = {
           { new: true }
         );
       }
-      
+
       await SurvivorModel.findByIdAndUpdate(
         req.headers.user,
         { water: finalQuantityUserWater },
@@ -135,17 +140,18 @@ module.exports = {
       );
     }
 
-//****************************************************************************Second Verification******************************************************************************** */
-      
+    //****************************************************************************Second Verification******************************************************************************** */
+
     if (userTotalPoints === survivorTotalPoints) {
+      const User = await SurvivorModel.findById(user);
+      const Survivor = await SurvivorModel.findById(survivorId);
 
-      const User = await SurvivorModel.findById(user); 
-      const Survivor = await SurvivorModel.findById(survivorId); 
+      const quantityUserPickAk = await (parseInt(User.ak) +
+        parseInt(akQuantityToPick));
 
-      const quantityUserPickAk = await (parseInt(User.ak) + parseInt(akQuantityToPick)); 
-      
       if (quantityUserPickAk) {
-        const quantitySurivivorPickAk = await (parseInt(Survivor.ak) -  parseInt(akQuantityToPick)); 
+        const quantitySurivivorPickAk = await (parseInt(Survivor.ak) -
+          parseInt(akQuantityToPick));
 
         await SurvivorModel.findByIdAndUpdate(
           req.params.survivorId,
@@ -160,10 +166,12 @@ module.exports = {
         { new: true }
       );
 
-      const quantityUserPickAid = await (parseInt(User.aid) + parseInt(aidQuantityToPick));
+      const quantityUserPickAid = await (parseInt(User.aid) +
+        parseInt(aidQuantityToPick));
 
       if (quantityUserPickAid) {
-        const quantitySurvivorPickAid = await (parseInt(Survivor.aid) - parseInt(aidQuantityToPick)); 
+        const quantitySurvivorPickAid = await (parseInt(Survivor.aid) -
+          parseInt(aidQuantityToPick));
 
         await SurvivorModel.findByIdAndUpdate(
           req.params.survivorId,
@@ -178,18 +186,18 @@ module.exports = {
         { new: true }
       );
 
-      const quantityUserPickSoup = await (parseInt(User.soup) + parseInt(soupQuantityToPick));
+      const quantityUserPickSoup = await (parseInt(User.soup) +
+        parseInt(soupQuantityToPick));
 
       if (quantityUserPickSoup) {
-
-        const quantitySurvivorPickSoup = parseInt(Survivor.soup) - parseInt(soupQuantityToPick);
+        const quantitySurvivorPickSoup =
+          parseInt(Survivor.soup) - parseInt(soupQuantityToPick);
 
         await SurvivorModel.findByIdAndUpdate(
           req.params.survivorId,
           { soup: quantitySurvivorPickSoup },
           { new: true }
         );
-
       }
 
       await SurvivorModel.findByIdAndUpdate(
@@ -198,67 +206,77 @@ module.exports = {
         { new: true }
       );
 
-      const quantityUserPickWater = await (parseInt(User.water) + parseInt(waterQuantityToPick));
+      const quantityUserPickWater = await (parseInt(User.water) +
+        parseInt(waterQuantityToPick));
 
       if (quantityUserPickWater) {
-
-        const quantitySurvivorPick= await (parseInt(Survivor.water) -parseInt(waterQuantityToPick)); 
+        const quantitySurvivorPick = await (parseInt(Survivor.water) -
+          parseInt(waterQuantityToPick));
 
         await SurvivorModel.findByIdAndUpdate(
-               req.params.survivorId,
-               { water: quantitySurvivorPick},
-               { new: true }
-             );
-            }
+          req.params.survivorId,
+          { water: quantitySurvivorPick },
+          { new: true }
+        );
+      }
 
       await SurvivorModel.findByIdAndUpdate(
-              req.headers.user,
-              { water: quantityUserPickWater },
-              { new: true }
-            );
+        req.headers.user,
+        { water: quantityUserPickWater },
+        { new: true }
+      );
 
       return res.json({ ok: true });
     }
   },
 
- async reportInfection(req, res) {
+  async reportInfection(req, res) {
+    const { user } = req.headers; //pega o usuario logado.
+    const { survivorId } = req.params; //pega o usuario selecionado e não logado.
 
-      const id = req.params.survivorId;
-      const survivor = await SurvivorModel.findByIdAndUpdate(req.params.survivorId, { infected:true}, { new: true })
-      res.send(survivor);
+    const UsuarioLogado = await SurvivorModel.findById(user); //não preciso mexer em nada aqui.
+    const UsuarioReceptor = await SurvivorModel.findById(survivorId); //não preciso mexer em nada aqui.
+ 
+    if(!UsuarioReceptor.survivorsWhoFlaggedId.includes(UsuarioLogado.name)){
+        UsuarioReceptor.survivorsWhoFlaggedId.push(UsuarioLogado.name);
+        if (UsuarioReceptor.survivorsWhoFlaggedId.length===5){
+            UsuarioReceptor.infected = true;
+        }
+    }
+
+    UsuarioReceptor.save()
 
 
+    
+    return res.status(400).json(UsuarioReceptor); //retorna para o usuário logado.
   },
 
   async getAllSurvivors(req, res) {
     const survivors = await SurvivorModel.find().sort({ createdAt: -1 });
     return res.send(survivors);
   },
- async getSurvivorById(req, res) {
+  async getSurvivorById(req, res) {
+    const id = req.params.survivorId;
+    const survivor = await SurvivorModel.findById(id);
 
-     const id = req.params.survivorId;
-      const survivor = await SurvivorModel.findById(id);
-
-      if(survivor){
-          try {
-            res.status(200).send(survivor)
-          } catch (error) {
-              console.log(error)
-
-          }
-
+    if (survivor) {
+      try {
+        res.status(200).send(survivor);
+      } catch (error) {
+        console.log(error);
       }
-
-     
+    }
 
     res.send(survivor);
   },
 
- async updateSurvivorLocation(req, res) {
-      const id = req.params.survivorId;
-      const newLocation = req.body.location
-      const survivor = await SurvivorModel.findByIdAndUpdate(req.params.survivorId,{location:newLocation},{new:true})
-
-
+  async updateSurvivorLocation(req, res) {
+    const id = req.params.survivorId;
+    const newLocation = req.body.location;
+    const survivor = await SurvivorModel.findByIdAndUpdate(
+      req.params.survivorId,
+      { location: newLocation },
+      { new: true }
+    );
   },
 };

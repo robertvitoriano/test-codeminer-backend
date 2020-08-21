@@ -22,7 +22,8 @@ const survivorSchema = new mongoose.Schema({
         type: String,
         required:true
     },
-    nameOfSurvivorsWhoFlagged:[{String}],
+    survivorsWhoFlaggedId:[String],
+
     infected:{
         type:Boolean,
         default:false
