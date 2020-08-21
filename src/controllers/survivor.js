@@ -294,7 +294,6 @@ module.exports = {
     const newLocationArray = newLocationString.split(',');
     let newLocationNumberLongitude = parseInt(newLocationArray[0]);
     let newLocationNumberLatitude = parseInt(newLocationArray[1]);
-  //latitude até 90
 
     if(!newLocationArray || !newLocationNumberLongitude){
         return res.send({message:'wrong format ! type "latitude,longitude'})
