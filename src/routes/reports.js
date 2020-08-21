@@ -2,7 +2,8 @@ const reportRouter = require('express').Router();
 const reportController = require('../controllers/reports')
 
 
-reportRouter.get('/reports/infected', reportController.getAverageOfInfected);
+reportRouter.get('/reports/infected', reportController.getPercentageOfInfected);
+reportRouter.get('/reports/noninfected', reportController.getPercentageOfNonInfected);
 
 
 

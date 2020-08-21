@@ -8,7 +8,7 @@ const ReportSchema = new mongoose.Schema({
         required:true  
     },
     info:{
-        type:Number,
+        type:String,
         
     },
   
