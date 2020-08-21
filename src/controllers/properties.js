@@ -1,4 +1,3 @@
-const itemModel = require('./../models/item');
 const userModel = require('../models/survivor')
 module.exports ={
 
