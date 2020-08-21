@@ -239,7 +239,7 @@ module.exports = {
  
     if(!UsuarioReceptor.survivorsWhoFlaggedId.includes(UsuarioLogado.name)){
         UsuarioReceptor.survivorsWhoFlaggedId.push(UsuarioLogado.name);
-        if (UsuarioReceptor.survivorsWhoFlaggedId.length===5){
+        if (UsuarioReceptor.survivorsWhoFlaggedId.length===5){///FUNCIONANDO
             UsuarioReceptor.infected = true;
         }
     }
