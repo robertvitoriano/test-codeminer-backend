@@ -3,9 +3,9 @@ const userModel = require('../models/survior')
 module.exports ={
 
    async getSurvivorProperties(req, res){
-        const {user} = req.headers;
+        const  {survivorId} = req.params
 
-        const loggedUser = await userModel.findById(user);
+        const loggedUser = await userModel.findById(survivorId);
 
         console.log(loggedUser.ak);
         const ak = loggedUser.ak;
