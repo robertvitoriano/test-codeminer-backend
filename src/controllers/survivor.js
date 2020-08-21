@@ -26,7 +26,7 @@ module.exports = {
 
   async tradeItems(req, res) {
 
-    //pick user by name
+  //*************************  //TODO  pick user by name*************************************
 
     const { user } = req.headers; 
     const { survivorId } = req.params;
