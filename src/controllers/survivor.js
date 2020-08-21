@@ -37,7 +37,7 @@ module.exports = {
         water,
       });
 
-      return res.send({ user });
+      return res.status(201).send({ user });
     } catch(e) {
         console.log(e);
     }

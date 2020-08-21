@@ -32,6 +32,7 @@ const survivorSchema = new mongoose.Schema({
         type: String,
         required: false,
         
+        
     },
     aid: {
         type: String,
