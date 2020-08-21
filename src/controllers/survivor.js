@@ -239,10 +239,10 @@ module.exports = {
 
     if (!survivor.survivorsWhoFlaggedId.includes(loggedUser.name)) {
       survivor.survivorsWhoFlaggedId.push(loggedUser.name);
-      if (survivor.survivorsWhoFlaggedId.length === 5) {
-        ///FUNCIONANDO
-        survivor.infected = true;
-      }
+        if (survivor.survivorsWhoFlaggedId.length === 5) {
+
+            survivor.infected = true;
+        }
     }
 
     survivor.save();
