@@ -131,7 +131,7 @@ module.exports = {
       );
     }
 
-//****************************************************************************Second Verification************************************************ */
+//****************************************************************************Second Verification******************************************************************************** */
       
     if (userTotalPoints === survivorTotalPoints) {
 
@@ -167,7 +167,7 @@ module.exports = {
           { new: true }
         );
       }
-      
+
       await SurvivorModel.findByIdAndUpdate(
         req.headers.user,
         { aid: quantityUserPickAid },
