@@ -25,8 +25,11 @@ module.exports = {
   },
 
   async tradeItems(req, res) {
-    const { user } = req.headers; //pega o usuario logado.
-    const { survivorId } = req.params; //pega o usuario selecionado e não logado.
+
+    //pick user by name
+
+    const { user } = req.headers; 
+    const { survivorId } = req.params;
 
     const {
       akQuantityToPay,
@@ -58,7 +61,7 @@ module.exports = {
       const finalQuantityUserAk = await (parseInt(User.ak) - parseInt(akQuantityToPay));
 
       if (finalQuantityUserAk) {
-
+          findOn
         const finalQuantitySurvivorAk = await (parseInt(Survivor.ak) + parseInt(akQuantityToPay));
 
         await SurvivorModel.findByIdAndUpdate(
