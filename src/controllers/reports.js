@@ -26,20 +26,16 @@ module.exports = {
         aidCounter = aidCounter / nonInfectedCounter;
         soupCounter = soupCounter / nonInfectedCounter;
          
-        waterCounter = parseFloat(waterCounter).toFixed(2);
-        aidCounter = parseFloat(aidCounter).toFixed(2);
-        soupCounter = parseFloat(soupCounter).toFixed(2);
-        akCounter = parseFloat(akCounter).toFixed(2)
-
-
-
-        console.log(akCounter,aidCounter,waterCounter,soupCounter)
+        const waterAverage = parseFloat(waterCounter).toFixed(2);
+        const aidAverage = parseFloat(aidCounter).toFixed(2);
+        const soupAverage = parseFloat(soupCounter).toFixed(2);
+        const akAverage = parseFloat(akCounter).toFixed(2)
 
 
         try {
             const report = await Report.create({
               description: "average_of_each_item_per user",
-              info: "ak: " + akCounter + ", " + "water: " + waterCounter + ", "+"soup: "+soupCounter+", "+"aid: "+aidCounter
+              info: "ak: " + akAverage + ", " + "water: " + waterAverage + ", "+"soup: "+soupAverage+", "+"aid: "+aidAverage
             });
             console.log(report);
 
