@@ -1,4 +1,4 @@
-const Survivor = require('./../models/survior');
+const Survivor = require('../models/survior');
 const Report = require('./../models/report');
 module.exports = {
     

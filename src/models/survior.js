@@ -1,9 +1,8 @@
 const mongoose = require('mongoose');
 
-const connection = require('./../database/connection');
+const connection = require('../database/connection');
 
 const Schema = mongoose.Schema;
-Schema.Types.Boolean.convertToFalse.add('');
 
 const survivorSchema = new mongoose.Schema({
     name:{

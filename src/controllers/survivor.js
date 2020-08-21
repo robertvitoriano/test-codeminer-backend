@@ -1,4 +1,4 @@
-const SurvivorModel = require("./../models/survior");
+const SurvivorModel = require("../models/survior");
 
 module.exports = {
   async registerSurvivor(req, res) {
@@ -275,17 +275,15 @@ module.exports = {
   },
   async getSurvivorById(req, res) {
     const id = req.params.survivorId;
-    const survivor = await SurvivorModel.findById(id);
 
     if (survivor) {
       try {
-        res.status(200).send(survivor);
+       return res.status(200).send(survivor);
       } catch (error) {
         console.log(error);
       }
     }
 
-    res.send(survivor);
   },
 
   async updateSurvivorLocation(req, res) {
