@@ -8,7 +8,7 @@ const ReportSchema  =  new Schema({
         required:true  
     },
     info:{
-        type:Number,
+        type:'Number',
         
     },
     required:true
