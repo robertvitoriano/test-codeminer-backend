@@ -217,15 +217,44 @@ module.exports = {
     }
   },
 
-  reportInfection(req, res) {},
+ async reportInfection(req, res) {
+
+      const id = req.params.survivorId;
+      const survivor = await SurvivorModel.findByIdAndUpdate(req.params.survivorId, { infected:true}, { new: true })
+      res.send(survivor);
+
+
+  },
 
   async getAllSurvivors(req, res) {
-    const Gra = await SurvivorModel.find().sort({ createdAt: -1 });
-    return res.json(Gra);
+    const survivors = await SurvivorModel.find().sort({ createdAt: -1 });
+    return res.json(survivors);
   },
-  getSurvivorById(req, res) {
+ async getSurvivorById(req, res) {
+
+     const id = req.params.survivorId;
+      const survivor = await SurvivorModel.findById(id);
+
+      if(survivor){
+          try {
+            res.status(200).send(survivor)
+          } catch (error) {
+              console.log(error)
+
+          }
+
+      }
+
+     
+
     res.send({ message: "all survivors" });
   },
 
-  updateSurvivorLocation(req, res) {},
+ async updateSurvivorLocation(req, res) {
+      const id = req.params.survivorId;
+      const newLocation = req.body.location
+      const survivor = await SurvivorModel.findByIdAndUpdate(req.params.survivorId,{location:newLocation},{new:true})
+
+
+  },
 };
