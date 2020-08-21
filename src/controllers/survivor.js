@@ -44,8 +44,7 @@ module.exports = {
   },
 
   async tradeItems(req, res) {
-    //*************************  //TODO  pick user by name*************************************
-    // FindOne
+
     const name = req.body;
 
     const { user } = req.headers;

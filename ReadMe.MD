@@ -4,7 +4,12 @@ Backend Test  Codeminer
 In order to run this project, you should first add a mongodb connection string into the  files .env and test.env , which can be found inside the 'config' folder. After that you should run:
 ### `yarn ` or `npm i`
 
-The project runs by default in
+The project runs with the command
+### `yarn dev ` or `npm run dev`
+
+After the project is running you  test the application by running:
+### `yarn test ` in other terminal
+
 
 ### `port 4000`
 
@@ -15,76 +20,57 @@ Open  http://localhost:4000 to run the API
 ### ENDPOINTS
 
 ### POST '/survivors', you register a new survivor
+name:STRING,
+age:NUMBER,
+gender:STRING,
+lastLocation:STRING, (`format: longitude, latitude. Ex: 65.0,46.6 ` )
 
-### GET '/properties/{survivor_id}', you can get information about the items each survivor carries by the _id
+ak:NUMBER,
+aid:NUMBER,
+soup:NUMBER,
+water:NUMBER
+
+When item is not desired, its value must be set to 0
+
 
 ### PATCH '/{survivor_id}/update' you can update the location of a specific survivor 
 information to send:
 location: STRING (`format: longitude, latitude. Ex: 65.0,46.6 ` )
 
-### POST '/reported/{survivor_id}', you can flag a survivor as infected
-information to send: survivor_id
+### POST '/reported/{survivor_id}', you can flag a survivor as infected  the  through the id. When five rerports have taken place, user is infected
+information to send: survivor_id (params)
 user id must be set in headers as `user`
 
-### POST '/survivor/{survivor_id}/trade'
-information to send: ak:number, water:number, aid:number, soup: number
+### POST '/survivor/{survivor_id}/trade' you this route, survivors can trade items between themselves
+user id must be set in headers as `user`
 
+information to send:
+akQuantityToPay:NUMBER
+aidQuantityToPay: NUMBER
+soupQuantityToPay: NUMBER 
+waterQuantityToPay: NUMBER
+
+akQuantityToPick:NUMBER
+aidQuantityToPick: NUMBER
+soupQuantityToPick: NUMBER 
+waterQuantityToPick: NUMBER
+
+When item is not desired, its value must be set to 0
 
 ### GET '/properties/{survivor_id}', you can get information about the items each survivor carries by the _id
+information to send: survivor_id (params)
 
-### GET '/reports/infected'
 
-### GET '/properties/{survivor_id}',
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### GET '/survivors/{survivor_id}, you can get all available information about a user'
+information to send: survivor_id (params)
 
-### `yarn build`
+### GET '/survivors', survivorController' lists all registered survivors
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### GET '/reports/infected' , you can get the percentage of  infected survivors
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### GET '/reports/noninfected'' , you can get the percentage of  noninfected survivors
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### GET '/reports/items', you can get the average quantity of each item per survivor
 
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+### GET '/reports/items', you can get the average quantity of each item per survivor
