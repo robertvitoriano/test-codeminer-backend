@@ -281,10 +281,10 @@ module.exports = {
         return res.send({message:'wrong format ! type "latitude,longitude'})
     }
 
-    if(newLocationNumberLatitude>90){
+    if(newLocationNumberLatitude>90 || newLocationNumberLatitude<0){
         newLocationNumberLatitude = 90
     }
-    if(newLocationNumberLongitude>180){
+    if(newLocationNumberLongitude>180 || newLocationNumberLongitude<0){
         newLocationNumberLongitude = 180
     }
     const survivor = await SurvivorModel.findByIdAndUpdate(
