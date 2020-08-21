@@ -28,7 +28,7 @@ module.exports = {
 
   //*************************  //TODO  pick user by name*************************************
     const name = req.body;
-    
+
     const { user } = req.headers; 
     const { survivorId } = req.params;
 
@@ -62,7 +62,7 @@ module.exports = {
       const finalQuantityUserAk = await (parseInt(User.ak) - parseInt(akQuantityToPay));
 
       if (finalQuantityUserAk) {
-          findOn
+          
         const finalQuantitySurvivorAk = await (parseInt(Survivor.ak) + parseInt(akQuantityToPay));
 
         await SurvivorModel.findByIdAndUpdate(
@@ -232,7 +232,7 @@ module.exports = {
 
   async getAllSurvivors(req, res) {
     const survivors = await SurvivorModel.find().sort({ createdAt: -1 });
-    return res.json(survivors);
+    return res.send(survivors);
   },
  async getSurvivorById(req, res) {
 
@@ -251,7 +251,7 @@ module.exports = {
 
      
 
-    res.send({ message: "all survivors" });
+    res.send(survivor);
   },
 
  async updateSurvivorLocation(req, res) {
