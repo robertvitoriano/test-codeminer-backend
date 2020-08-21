@@ -2,6 +2,8 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
+//check by name to add the quantity of points
+
 const itemSchema = new Schema({
     quantity: {
         type:Number
