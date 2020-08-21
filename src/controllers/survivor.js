@@ -37,7 +37,7 @@ module.exports = {
         water,
       });
 
-      return res.status(201).send({ user });
+      return res.send({ user });
     } catch(e) {
         console.log(e);
     }
@@ -266,7 +266,7 @@ module.exports = {
 
     survivor.save();
 
-    return res.status(400).json(survivor); 
+    return res.send(survivor); 
   },
 
   async getAllSurvivors(req, res) {
