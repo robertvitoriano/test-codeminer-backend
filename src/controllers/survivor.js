@@ -94,6 +94,7 @@ module.exports = {
       );
 
       const finalQuantityUserSoup = await (parseInt(User.soup) - parseInt(soupQuantityToPay));
+
       if (finalQuantityUserSoup) {
 
         const finalQuantitySurvivorSoup = await (parseInt(Survivor.soup) + parseInt(soupQuantityToPay));
@@ -129,7 +130,7 @@ module.exports = {
         { new: true }
       );
     }
-    
+
 //****************************************************************************Second Verification************************************************ */
       
     if (userTotalPoints === survivorTotalPoints) {
@@ -181,7 +182,9 @@ module.exports = {
           { soup: quantitySurvivorPickSoup },
           { new: true }
         );
+
       }
+      
       await SurvivorModel.findByIdAndUpdate(
         req.headers.user,
         { soup: quantityUserPickSoup },
@@ -195,16 +198,17 @@ module.exports = {
         const quantitySurvivorPick= await (parseInt(Survivor.water) -parseInt(waterQuantityToPick)); 
 
         await SurvivorModel.findByIdAndUpdate(
-          req.params.survivorId,
-          { water: quantitySurvivorPick},
-          { new: true }
-        );
-      }
+               req.params.survivorId,
+               { water: quantitySurvivorPick},
+               { new: true }
+             );
+            }
+
       await SurvivorModel.findByIdAndUpdate(
-        req.headers.user,
-        { water: quantityUserPickWater },
-        { new: true }
-      );
+              req.headers.user,
+              { water: quantityUserPickWater },
+              { new: true }
+            );
 
       return res.json({ ok: true });
     }
