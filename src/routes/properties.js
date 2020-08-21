@@ -6,7 +6,7 @@ const survivor = require('../controllers/survivor');
 express = require('express');
 const survivorRouter = express.Router()
 
-propertiesRouter.get('survivor:id/properties', propertiesController.getSurvivorProperties);
+propertiesRouter.get('/properties', propertiesController.getSurvivorProperties);
 
 
 module.exports = propertiesRouter;
