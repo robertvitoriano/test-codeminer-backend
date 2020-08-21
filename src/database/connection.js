@@ -1,12 +1,19 @@
+require("dotenv").config();
 const mongoose = require('mongoose');
 
 
-mongoose.connect('mongodb+srv://robertvitoriano:961862194@cluster0-btwq6.mongodb.net/resident-zombie?retryWrites=true&w=majority', {
+mongoose.connect(
+  process.env.MONGO_URL,
+  {
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false,
-    useUnifiedTopology: true
-},()=>{console.log('Im connected to mongodb')});
+    useUnifiedTopology: true,
+  },
+  () => {
+    console.log("Im connected to mongodb");
+  }
+);
 
 
 

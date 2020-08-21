@@ -1,9 +1,11 @@
 {
   "dependencies": {
+    "dotenv": "^8.2.0",
+    "env-cmd": "^10.1.0",
     "express": "^4.17.1",
     "mongoose": "^5.10.0"
   },
   "scripts": {
-    "dev": "nodemon src/server.js"
+    "dev": "env-cmd -f ./config/.env nodemon src/server.js"
   }
 }
