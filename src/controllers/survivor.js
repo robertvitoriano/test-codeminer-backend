@@ -1,4 +1,4 @@
-const SurvivorModel = require("../models/survior");
+const SurvivorModel = require("../models/survivor");
 
 module.exports = {
   async registerSurvivor(req, res) {
