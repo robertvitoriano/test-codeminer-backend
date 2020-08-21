@@ -231,24 +231,23 @@ module.exports = {
   },
 
   async reportInfection(req, res) {
-    const { user } = req.headers; //pega o usuario logado.
-    const { survivorId } = req.params; //pega o usuario selecionado e não logado.
+    const { user } = req.headers; 
+    const { survivorId } = req.params;
 
-    const UsuarioLogado = await SurvivorModel.findById(user); //não preciso mexer em nada aqui.
-    const UsuarioReceptor = await SurvivorModel.findById(survivorId); //não preciso mexer em nada aqui.
- 
-    if(!UsuarioReceptor.survivorsWhoFlaggedId.includes(UsuarioLogado.name)){
-        UsuarioReceptor.survivorsWhoFlaggedId.push(UsuarioLogado.name);
-        if (UsuarioReceptor.survivorsWhoFlaggedId.length===5){///FUNCIONANDO
-            UsuarioReceptor.infected = true;
-        }
+    const user = await SurvivorModel.findById(user); 
+    const survivor = await SurvivorModel.findById(survivorId); 
+
+    if (!survivor.survivorsWhoFlaggedId.includes(user.name)) {
+      survivor.survivorsWhoFlaggedId.push(user.name);
+      if (survivor.survivorsWhoFlaggedId.length === 5) {
+        ///FUNCIONANDO
+        survivor.infected = true;
+      }
     }
 
-    UsuarioReceptor.save()
+    survivor.save();
 
-
-    
-    return res.status(400).json(UsuarioReceptor); //retorna para o usuário logado.
+    return res.status(400).json(survivor); //retorna para o usuário logado.
   },
 
   async getAllSurvivors(req, res) {
