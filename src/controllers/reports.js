@@ -1,3 +1,4 @@
+const Survivor = require('./../models/survior')
 module.exports = {
     
     getAveragetItemsPerUser(req, res){
